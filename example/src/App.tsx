@@ -17,10 +17,10 @@ import {registerHooksTests} from './tests/hooks.spec';
 import {open} from '@op-engineering/op-sqlite';
 import clsx from 'clsx';
 import {preparedStatementsTests} from './tests/preparedStatements.spec';
-import performance from 'react-native-performance';
-import {MMKV} from 'react-native-mmkv';
+// import performance from 'react-native-performance';
+// import {MMKV} from 'react-native-mmkv';
 
-export const mmkv = new MMKV();
+// export const mmkv = new MMKV();
 
 const StyledScrollView = styled(ScrollView, {
   props: {
@@ -95,26 +95,26 @@ export default function App() {
     );
     insertStatment.bind(['quack']);
 
-    let start = performance.now();
-    insertStatment.execute();
-    let end = performance.now();
-    setSqliteMMSetTime(end - start);
+    // let start = performance.now();
+    // insertStatment.execute();
+    // let end = performance.now();
+    // setSqliteMMSetTime(end - start);
 
-    start = performance.now();
-    mmkv.set('mmkvDef', 'quack');
-    end = performance.now();
-    setMMKVSetTime(end - start);
+    // start = performance.now();
+    // mmkv.set('mmkvDef', 'quack');
+    // end = performance.now();
+    // setMMKVSetTime(end - start);
 
-    let readStatement = db.prepareStatement('SELECT text from mmkvTest;');
-    start = performance.now();
-    readStatement.execute();
-    end = performance.now();
-    setSqliteMMGetTime(end - start);
+    // let readStatement = db.prepareStatement('SELECT text from mmkvTest;');
+    // start = performance.now();
+    // readStatement.execute();
+    // end = performance.now();
+    // setSqliteMMGetTime(end - start);
 
-    start = performance.now();
-    mmkv.getString('mmkvDef');
-    end = performance.now();
-    setMMKVGetTime(end - start);
+    // start = performance.now();
+    // mmkv.getString('mmkvDef');
+    // end = performance.now();
+    // setMMKVGetTime(end - start);
 
     db.close();
   };

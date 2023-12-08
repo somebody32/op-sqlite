@@ -1,4 +1,4 @@
-import performance from 'react-native-performance';
+// import performance from 'react-native-performance';
 import Chance from 'chance';
 import {open} from '@op-engineering/op-sqlite';
 // import { Buffer } from 'buffer';
@@ -71,40 +71,40 @@ export async function queryLargeDB() {
     // @ts-ignore
     global.gc();
 
-    performance.mark('queryStart');
+    // performance.mark('queryStart');
     const results = await largeDb.executeAsync('SELECT * FROM Test');
-    const measurement = performance.measure('queryEnd', 'queryStart');
-    times.loadFromDb.push(measurement.duration);
+    // const measurement = performance.measure('queryEnd', 'queryStart');
+    // times.loadFromDb.push(measurement.duration);
 
     // @ts-ignore
     global.gc();
 
-    performance.mark('accessingStart');
+    // performance.mark('accessingStart');
     const rows = results.rows!._array;
     for (let i = 0; i < rows.length; i++) {
       const v1 = rows[i].v14;
     }
-    const accessMeasurement = performance.measure(
-      'accessingEnd',
-      'accessingStart',
-    );
-    times.access.push(accessMeasurement.duration);
+    // const accessMeasurement = performance.measure(
+    //   'accessingEnd',
+    //   'accessingStart',
+    // );
+    // times.access.push(accessMeasurement.duration);
 
     // @ts-ignore
     global.gc();
 
-    let start = performance.now();
+    // let start = performance.now();
     const statement = largeDb.prepareStatement('SELECT * FROM Test');
-    let end = performance.now();
-    times.prepare.push(end - start);
+    // let end = performance.now();
+    // times.prepare.push(end - start);
 
     // @ts-ignore
     global.gc();
 
-    start = performance.now();
+    // start = performance.now();
     let results2 = statement.execute();
-    end = performance.now();
-    times.preparedExecution.push(end - start);
+    // end = performance.now();
+    // times.preparedExecution.push(end - start);
   }
 
   return times;
